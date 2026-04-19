@@ -1,0 +1,35 @@
+name: Deploy Spring Boot API
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "Api-SpringBoot/**"
+      - ".github/workflows/springboot-deploy.yml"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: Api-SpringBoot
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: maven
+
+      - name: Build
+        run: ./mvnw -q -DskipTests package
+
+      - name: Trigger Render deploy
+        if: ${{ secrets.RENDER_DEPLOY_HOOK_SPRING != '' }}
+        run: curl -fsS -X POST "$RENDER_DEPLOY_HOOK_SPRING"
+        env:
+          RENDER_DEPLOY_HOOK_SPRING: ${{ secrets.RENDER_DEPLOY_HOOK_SPRING }}
