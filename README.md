@@ -17,4 +17,4 @@ Repositorio monorepo con tres mini APIs listas para despliegue:
    - `RENDER_DEPLOY_HOOK_NODE`
    - `RENDER_DEPLOY_HOOK_SPRING`
    - `RENDER_DEPLOY_HOOK_DJANGO`
-4. Cada push a `main` dispara el workflow que valida el proyecto y luego llama el hook de Render.
+4. Cada push a `main` dispara el workflow, que valida el proyecto y luego llama el hook de Render.
