@@ -2,8 +2,6 @@ name: Deploy Spring API
 
 on:
   push:
-    paths:
-      - 'Api-SpringBoot/**'
     branches:
       - main
 
@@ -13,4 +11,4 @@ jobs:
 
     steps:
       - name: Trigger Render Deploy (Spring)
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_SPRING }}
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_SPRING }}"

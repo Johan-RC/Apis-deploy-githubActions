@@ -2,8 +2,6 @@ name: Deploy Node API
 
 on:
   push:
-    paths:
-      - 'Api-Node/**'
     branches:
       - main
 
@@ -13,4 +11,4 @@ jobs:
 
     steps:
       - name: Trigger Render Deploy (Node)
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_NODE }}
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_NODE }}"

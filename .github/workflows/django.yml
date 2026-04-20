@@ -2,8 +2,6 @@ name: Deploy Django API
 
 on:
   push:
-    paths:
-      - 'Api-Django/**'
     branches:
       - main
 
@@ -13,4 +11,4 @@ jobs:
 
     steps:
       - name: Trigger Render Deploy (Django)
-        run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_DJANGO }}
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK_DJANGO }}"
